@@ -11,4 +11,5 @@ export default defineConfig({
     plugins: [wywInJS()],
   },
   site: "https://artemneepokemon.github.io",
+  base: "",
 })
