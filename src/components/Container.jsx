@@ -67,7 +67,7 @@ export default function Container() {
 
   async function loadPokemons() {
     try {
-      const pokemons = await fetchPokemons(10)
+      const pokemons = await fetchPokemons()
       setPokemons(pokemons)
       setLoading(false)
     } catch (error) {
