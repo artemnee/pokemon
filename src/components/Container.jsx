@@ -8,6 +8,10 @@ const Section = styled.section`
   display: flex;
   gap: 3.375rem;
   flex-direction: column;
+  @media (max-width: 70rem) {
+    padding-inline: 3rem;
+    width: unset;
+  }
 `
 import Button from "../components/Button"
 import Header from "./Header.jsx"
@@ -19,6 +23,11 @@ const Content = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 70rem) {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
 `
 
 const Buttons = styled.div`
@@ -27,15 +36,18 @@ const Buttons = styled.div`
   row-gap: 10px;
   flex-wrap: wrap;
 `
+
 export default function Container() {
   const [pokemons, setPokemons] = useState([])
   const [pokemon, setPokemon] = useState({})
+  const [loading, setLoading] = useState(true)
 
   async function getPokemos() {
     const pokemons = await axios.get(
       `https://pokeapi.co/api/v2/pokemon?limit=10`,
     )
     setPokemons(pokemons.data.results)
+    setLoading(false)
   }
 
   async function handleChangePokemon(url) {
@@ -67,7 +79,7 @@ export default function Container() {
             </Button>
           ))}
         </Buttons>
-        <Card pokemon={pokemon} />
+        <Card pokemon={pokemon} loading={loading} />
       </Content>
     </Section>
   )

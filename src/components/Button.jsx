@@ -11,9 +11,16 @@ const ButtonPoke = styled.button`
   color: white;
   cursor: pointer;
   min-width: 60px;
-  transition: opacity 0.2s ease-in-out;
-  &:hover {
-    opacity: 0.8;
+  transition:
+    opacity 0.2s ease-in-out,
+    scale 0.1s ease-in-out;
+  @media (hover: hover) {
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  &:active {
+    scale: 1.05;
   }
 `
 
