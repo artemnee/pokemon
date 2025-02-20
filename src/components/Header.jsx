@@ -33,7 +33,7 @@ export default function Header() {
     <Head>
       <Title>ПОКЕМОНЫ API</Title>
       <Click>
-        <img src="/hand.svg" alt="hand" />
+        <img src="/pokemon/hand.svg" alt="hand" />
         <Desc>
           Нажмите на <br /> нужное Покемона
         </Desc>
