@@ -56,9 +56,14 @@ const CardDesc = styled.div`
   color: #a0a0a0;
 `
 
-export default function Card({ pokemon, loading }) {
+export default function Card({ pokemon, loading, clicked }) {
   return (
-    <CardPoke>
+    <CardPoke
+      style={{
+        opacity: clicked ? 0.5 : 1,
+        transition: "opacity 0.2s linear",
+      }}
+    >
       <TitleWrapper>
         <CardTitle>{pokemon.name}</CardTitle>
         {loading ? (

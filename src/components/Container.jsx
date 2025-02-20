@@ -62,6 +62,7 @@ export default function Container() {
   const [pokemons, setPokemons] = useState([])
   const [pokemon, setPokemon] = useState({})
   const [loading, setLoading] = useState(true)
+  const [clicked, setClicked] = useState(false)
 
   async function getPokemos() {
     try {
@@ -77,8 +78,10 @@ export default function Container() {
 
   async function handleChangePokemon(url) {
     try {
+      setClicked(true)
       const pokemon = await axios.get(`${url}`)
       setPokemon(pokemon.data)
+      setTimeout(() => setClicked(false), 300)
     } catch (error) {
       console.error("Ошибка при загрузке покемона", error)
     }
@@ -113,7 +116,7 @@ export default function Container() {
           </Buttons>
         )}
 
-        <Card pokemon={pokemon} loading={loading} />
+        <Card pokemon={pokemon} loading={loading} clicked={clicked} />
       </Content>
     </Section>
   )
