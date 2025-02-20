@@ -62,7 +62,7 @@ export default function Card({ pokemon, clicked }) {
         <span> Id: {pokemon.id}</span>
         <span> height: {pokemon.height}</span>
         <span>
-          Attack:{" "}
+          attack:{" "}
           {
             pokemon?.stats?.find((stat) => stat.stat.name === "attack")
               ?.base_stat
