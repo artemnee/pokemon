@@ -11,5 +11,4 @@ export default defineConfig({
     plugins: [wywInJS()],
   },
   site: "https://artemnee.github.io",
-  base: "",
 })
