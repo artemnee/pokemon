@@ -43,16 +43,24 @@ export default function Container() {
   const [loading, setLoading] = useState(true)
 
   async function getPokemos() {
-    const pokemons = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon?limit=10`,
-    )
-    setPokemons(pokemons.data.results)
-    setLoading(false)
+    try {
+      const pokemons = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon?limit=10`,
+      )
+      setPokemons(pokemons.data.results)
+      setLoading(false)
+    } catch (error) {
+      console.error("Ошибка при загрузке покемонов", error)
+    }
   }
 
   async function handleChangePokemon(url) {
-    const pokemon = await axios.get(`${url}`)
-    setPokemon(pokemon.data)
+    try {
+      const pokemon = await axios.get(`${url}`)
+      setPokemon(pokemon.data)
+    } catch (error) {
+      console.error("Ошибка при загрузке покемона", error)
+    }
   }
 
   useEffect(() => {
