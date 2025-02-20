@@ -2,8 +2,8 @@ import { styled } from "@linaria/react"
 import Button from "../components/Button"
 import Header from "./Header.jsx"
 import Card from "./Card.jsx"
-import axios from "axios"
 import { useEffect, useState } from "react"
+import { fetchPokemonByUrl, fetchPokemons } from "../utils/api.js"
 
 const Section = styled.section`
   width: 80rem;
@@ -65,23 +65,21 @@ export default function Container() {
   const [loading, setLoading] = useState(true)
   const [clicked, setClicked] = useState(true)
 
-  async function getPokemos() {
+  async function loadPokemons() {
     try {
-      const pokemons = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon?limit=10`,
-      )
-      setPokemons(pokemons.data.results)
+      const pokemons = await fetchPokemons(10)
+      setPokemons(pokemons)
       setLoading(false)
     } catch (error) {
       console.error("Ошибка при загрузке покемонов", error)
     }
   }
 
-  async function handleChangePokemon(url) {
+  async function handlePokemonSelect(url) {
     try {
       setClicked(true)
-      const pokemon = await axios.get(`${url}`)
-      setPokemon(pokemon.data)
+      const pokemon = await fetchPokemonByUrl(url)
+      setPokemon(pokemon)
       setTimeout(() => setClicked(false), 300)
     } catch (error) {
       console.error("Ошибка при загрузке покемона", error)
@@ -89,12 +87,12 @@ export default function Container() {
   }
 
   useEffect(() => {
-    getPokemos()
+    loadPokemons()
   }, [])
 
   useEffect(() => {
     if (pokemons.length > 0) {
-      handleChangePokemon(pokemons[0]?.url)
+      handlePokemonSelect(pokemons[0]?.url)
     }
   }, [pokemons])
 
@@ -109,7 +107,7 @@ export default function Container() {
             {pokemons.map((pokemon) => (
               <Button
                 key={pokemon.name}
-                onClick={() => handleChangePokemon(pokemon.url)}
+                onClick={() => handlePokemonSelect(pokemon.url)}
               >
                 {pokemon.name}
               </Button>
