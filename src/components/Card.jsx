@@ -27,27 +27,6 @@ const CardImg = styled.div`
   height: 12.5rem;
 `
 
-const LoadingImg = styled.div`
-  width: 24.75rem;
-  height: 12.5rem;
-  background: linear-gradient(90deg, #232323, #181818);
-  background-size: 400% 400%;
-  animation: gradient 2s ease infinite;
-  transform: translate3d(0, 0, 0);
-
-  @keyframes gradient {
-    0% {
-      background-position: 0 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0 50%;
-    }
-  }
-`
-
 const CardDesc = styled.div`
   display: flex;
   flex-direction: column;
@@ -56,7 +35,7 @@ const CardDesc = styled.div`
   color: #a0a0a0;
 `
 
-export default function Card({ pokemon, loading, clicked }) {
+export default function Card({ pokemon, clicked }) {
   return (
     <CardPoke
       style={{
@@ -66,18 +45,17 @@ export default function Card({ pokemon, loading, clicked }) {
     >
       <TitleWrapper>
         <CardTitle>{pokemon.name}</CardTitle>
-        {loading ? (
-          <LoadingImg />
-        ) : (
-          <CardImg>
-            <img
-              src={pokemon?.sprites?.front_default}
-              alt=""
-              width={396}
-              height={200}
-            />
-          </CardImg>
-        )}
+        <CardImg>
+          <img
+            src={pokemon?.sprites?.front_default}
+            alt=""
+            width={396}
+            height={200}
+            style={{
+              opacity: clicked ? 0.1 : 1,
+            }}
+          />
+        </CardImg>
       </TitleWrapper>
       <CardDesc>
         <span>Снялся в ??? сериях</span>

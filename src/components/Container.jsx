@@ -33,7 +33,8 @@ const Content = styled.div`
 const LoadingButtons = styled.div`
   width: 31rem;
   height: 12.5rem;
-  background: linear-gradient(90deg, #232323, #181818);
+  background: linear-gradient(90deg, rgba(17, 17, 17, 0.9), #131313);
+
   background-size: 400% 400%;
   animation: gradient 2s ease infinite;
   transform: translate3d(0, 0, 0);
@@ -62,7 +63,7 @@ export default function Container() {
   const [pokemons, setPokemons] = useState([])
   const [pokemon, setPokemon] = useState({})
   const [loading, setLoading] = useState(true)
-  const [clicked, setClicked] = useState(false)
+  const [clicked, setClicked] = useState(true)
 
   async function getPokemos() {
     try {
