@@ -32,7 +32,7 @@ const LoadingImg = styled.div`
   height: 12.5rem;
   background: linear-gradient(90deg, #232323, #181818);
   background-size: 400% 400%;
-  animation: gradient 0.5s ease infinite;
+  animation: gradient 2s ease infinite;
   transform: translate3d(0, 0, 0);
 
   @keyframes gradient {

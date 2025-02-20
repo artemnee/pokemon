@@ -1,4 +1,9 @@
 import { styled } from "@linaria/react"
+import Button from "../components/Button"
+import Header from "./Header.jsx"
+import Card from "./Card.jsx"
+import axios from "axios"
+import { useEffect, useState } from "react"
 
 const Section = styled.section`
   width: 80rem;
@@ -13,11 +18,6 @@ const Section = styled.section`
     width: unset;
   }
 `
-import Button from "../components/Button"
-import Header from "./Header.jsx"
-import Card from "./Card.jsx"
-import axios from "axios"
-import { useEffect, useState } from "react"
 
 const Content = styled.div`
   display: flex;
@@ -27,6 +27,27 @@ const Content = styled.div`
   @media (max-width: 70rem) {
     flex-wrap: wrap;
     gap: 1rem;
+  }
+`
+
+const LoadingButtons = styled.div`
+  width: 31rem;
+  height: 12.5rem;
+  background: linear-gradient(90deg, #232323, #181818);
+  background-size: 400% 400%;
+  animation: gradient 2s ease infinite;
+  transform: translate3d(0, 0, 0);
+
+  @keyframes gradient {
+    0% {
+      background-position: 0 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0 50%;
+    }
   }
 `
 
@@ -77,16 +98,21 @@ export default function Container() {
     <Section>
       <Header />
       <Content>
-        <Buttons>
-          {pokemons.map((pokemon) => (
-            <Button
-              key={pokemon.name}
-              onClick={() => handleChangePokemon(pokemon.url)}
-            >
-              {pokemon.name}
-            </Button>
-          ))}
-        </Buttons>
+        {loading ? (
+          <LoadingButtons />
+        ) : (
+          <Buttons>
+            {pokemons.map((pokemon) => (
+              <Button
+                key={pokemon.name}
+                onClick={() => handleChangePokemon(pokemon.url)}
+              >
+                {pokemon.name}
+              </Button>
+            ))}
+          </Buttons>
+        )}
+
         <Card pokemon={pokemon} loading={loading} />
       </Content>
     </Section>
