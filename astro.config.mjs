@@ -10,6 +10,6 @@ export default defineConfig({
   vite: {
     plugins: [wywInJS()],
   },
-  site: "https://artemneepokemon.github.io",
+  site: "https://artemnee.github.io",
   base: "",
 })
